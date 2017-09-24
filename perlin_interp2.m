@@ -1,15 +1,11 @@
-function w=perlin_interp2(x,y,g_x,g_y)
+function w=perlin_interp2(u,v)
 
-    p_x=floor(x);
-    p_y=floor(y);
-    x=x-p_x;
-    y=y-p_y;
-    p_x=p_x+1;
-    p_y=p_y+1;
-    g_00=[g_x(p_x,p_y);g_y(p_x,p_y)];
-    g_10=[g_x(p_x+1,p_y);g_y(p_x+1,p_y)];
-    g_01=[g_x(p_x,p_y+1);g_y(p_x,p_y+1)];
-    g_11=[g_x(p_x+1,p_y+1);g_y(p_x+1,p_y+1)];
+    x=u-floor(u);
+    y=v-floor(v);
+    g_00=[2*random2d([floor(u);floor(v)], 1289)-1; 2*random2d([floor(u);floor(v)], 587)-1];
+    g_10=[2*random2d([floor(u);floor(v)]+[1;0], 1289)-1; 2*random2d([floor(u);floor(v)]+[1;0], 587)-1];
+    g_01=[2*random2d([floor(u);floor(v)]+[0;1], 1289)-1; 2*random2d([floor(u);floor(v)]+[0;1], 587)-1];
+    g_11=[2*random2d([floor(u);floor(v)]+[1;1], 1289)-1; 2*random2d([floor(u);floor(v)]+[1;1], 587)-1];
     w_00=dot(g_00,[x;y]);
     w_10=dot(g_10,[x-1;y]);
     w_01=dot(g_01,[x;y-1]);

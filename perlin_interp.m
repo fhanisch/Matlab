@@ -1,10 +1,8 @@
-function w=perlin_interp(x,g)
+function w=perlin_interp(u)
 
-    p=floor(x);
-    x=x-p;
-    p=p+1;
-    g_0=g(p);
-    g_1=g(p+1);
+    x=u-floor(u);
+    g_0=2*random(floor(u), 1589)-1;
+    g_1=2*random(floor(u)+1, 1589)-1;
     w_0=g_0*x;
     w_1=g_1*(x-1);
     s_x=10*x^3-15*x^4+6*x^5;
