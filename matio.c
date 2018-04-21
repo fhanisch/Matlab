@@ -63,7 +63,7 @@ int writeDoubleMatrix(char *name, double *data, int m, int n)
 	matlabArray.dataSize = 4 * tagLength + numArray.flags.dataSize + numArray.dimensions.dataSize + numArray.name.dataSize + numArray.pr.dataSize;
 	matlabArray.data = &numArray;
 
-	fwrite(&matlabArray.dataType, 1, sizeof(DataType), matFile);
+	fwrite(&matlabArray.dataType, 1, 4, matFile);
 	fwrite(&matlabArray.dataSize, 1, 4, matFile);
 	fwrite(&((NumericArray*)(matlabArray.data))->flags.dataType, 1, 4, matFile);
 	fwrite(&((NumericArray*)(matlabArray.data))->flags.dataSize, 1, 4, matFile);
